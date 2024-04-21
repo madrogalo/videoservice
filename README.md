@@ -1,16 +1,40 @@
-# Videoservice
+# Videoservice Project Setup Documentation
 
-### dependencies
+## Prerequisites
+- Ensure you have Git, Node.js, and Docker installed on your computer.
+## Getting Started
 
-```node 18.17.0```
+### 1. Clone the Repository
+```
+git clone git@github.com:madrogalo/videoservice.git
+```
+
+### 2. Install Dependencies
+```
+cd [cloned-directory]/packages/server
+
+npm install
+```
+
+```
+cd [cloned-directory]/packages/web
+
+npm install
+```
+
+## Running the Application
+
+### Start the Docker Application on your computer
+
+### Start the Application Using Docker
 
 
-```npm start```
+```
+docker-compose up --build
+```
 
+### Stop the Application
 
-### Just start only backend
-```lerna run start --scope backend```
-
-### Just start only frontend
-```lerna run start --scope frontend```
-
+```
+docker-compose down
+```
