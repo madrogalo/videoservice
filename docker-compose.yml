@@ -28,6 +28,16 @@ services:
       POSTGRES_PASSWORD: j49OPekq9PlKj
     ports:
       - "5433:5432"  #The internal PostgreSQL port is always
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "youn4ik@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin123456"
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
 
 volumes:
   node_modules:
