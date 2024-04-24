@@ -30,7 +30,7 @@ npm install
 
 
 ```
-docker-compose up --build
+docker-compose up --build -d  
 ```
 
 ### Stop the Application
