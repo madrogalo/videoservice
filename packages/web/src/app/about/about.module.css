@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.image {
+  display: flex;
+  max-width: 60vw;
+  height: auto;
+}
+
+.text {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
