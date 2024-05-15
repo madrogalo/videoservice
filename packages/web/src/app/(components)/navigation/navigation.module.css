@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.root a {
+  text-decoration: none;
+}

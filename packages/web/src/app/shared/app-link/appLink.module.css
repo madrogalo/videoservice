@@ -1,0 +1,5 @@
+.root {
+  color: var(--text-color-main, black);
+  text-decoration: none;
+  line-height: 200%;
+}
