@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import aboutImage from "./Video with blogger doing review of smartphone.jpg";
+import aboutImage from "@assets/about.jpg";
 
 import styles from "./about.module.css";
 

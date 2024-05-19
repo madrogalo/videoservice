@@ -1,6 +1,6 @@
-import { getAllCourses } from "./(server)/api";
-import { CoursePreview } from "./(components)/coursePreview/coursePreview";
-import { Pagination } from "./shared/pagination/pagination";
+import { getAllCourses } from "../(server)/api";
+import { CoursePreview } from "../(components)/coursePreview/coursePreview";
+import { Pagination } from "../shared/pagination/pagination";
 
 const COURSES_PER_PAGE = 2;
 
