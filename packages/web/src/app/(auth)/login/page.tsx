@@ -4,20 +4,13 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import img from "@assets/image.png";
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Link,
-  Paper,
-  TextField,
-} from "@mui/material";
+import { Box, Link, Paper } from "@mui/material";
 import googleImage from "@assets/Google.png";
 import facebookImage from "@assets/Facebook.png";
 import instagramImage from "@assets/Instagram.png";
 import twitterImage from "@assets/Twitter.png";
 import { SocialIconButton } from "@/app/(components)/SocialIconButton/socialIconButton";
+import { ValidatedLoginForm } from "@/app/(components)/ValidatedLoginForm/validatedLoginForm";
 
 const SocialIcons = [
   { image: googleImage, alt: "Google icon" },
@@ -63,52 +56,8 @@ export const Login = () => {
           >
             Login your account in a seconds
           </Typography>
-          <TextField
-            sx={{ mt: 2.5 }}
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            color="primary"
-          />
-          <TextField
-            sx={{ mt: 2.5 }}
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            color="primary"
-          />
-          <Grid container sx={{ mt: 4 }}>
-            <Grid item xs>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="secondary" />}
-                label="Keep me logged in "
-              />
-            </Grid>
-            <Grid item alignSelf={"center"}>
-              <Link href="#" variant="body1" color="secondary">
-                Forgot password?
-              </Link>
-            </Grid>
-          </Grid>
+          <ValidatedLoginForm />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 4, mb: 2, height: 60 }}
-            size="large"
-            color="secondary"
-          >
-            Sign In
-          </Button>
           <Link href="#" variant="body2" sx={{ mt: 3 }} color="secondary">
             {"Don't have an account? Sign Up"}
           </Link>
