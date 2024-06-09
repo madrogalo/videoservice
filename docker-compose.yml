@@ -28,6 +28,8 @@ services:
       POSTGRES_PASSWORD: j49OPekq9PlKj
     ports:
       - "5433:5432"  #The internal PostgreSQL port is always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
   
   pgadmin:
     image: dpage/pgadmin4
@@ -41,3 +43,4 @@ services:
 
 volumes:
   node_modules:
+  pgdata:

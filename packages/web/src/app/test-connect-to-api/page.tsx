@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import useSWR, { mutate } from "swr";
 import styles from "./about.module.css";
 import { Button, TextField } from "@mui/material";
 
@@ -10,8 +11,15 @@ type User = {
   id: number | string;
 };
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+
 export const AboutPage = () => {
-  const [users, setUsers] = React.useState<User[] | null>(null);
+  const { data, error } = useSWR('http://localhost:8080/users', fetcher);
+
+  console.log('users', data);
+  
+  // const [users, setUsers] = React.useState<User[] | null>(null);
   const [form, setForm] = React.useState<User>({
     name: "",
     surname: "",
@@ -22,7 +30,7 @@ export const AboutPage = () => {
   function getUsers() {
     fetch("http://localhost:8080/users")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      // .then((data) => setUsers(data));
   }
 
   const handlePostForm = () => {
@@ -38,8 +46,11 @@ export const AboutPage = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .then(getUsers)
+      .then((data) => {
+        console.log(data);
+        mutate('http://localhost:8080/users'); // Revalidate the data
+      })
+      // .then(getUsers)
       .then(() => setForm({ name: "", surname: "", email: "", id: "" }))
       .catch((error) => alert(error));
   };
@@ -59,15 +70,15 @@ export const AboutPage = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  React.useEffect(getUsers, []);
+  // React.useEffect(getUsers, []);
 
   return (
     <article className={styles.root}>
       <h2>Test Connect To Api</h2>
       <h2>Get and Delete Users</h2>
-      {users ? (
+      {data ? (
         <ul>
-          {users.map((user) => (
+          {data.map((user: User) => (
             <li key={user.email}>
               {user.name} {user.surname} ({user.email})
               <Button onClick={() => deleteUser(user.id)}>Delete</Button>

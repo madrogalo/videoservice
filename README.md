@@ -32,9 +32,45 @@ npm install
 ```
 docker-compose up --build -d  
 ```
+### Upate only web
+
+```
+docker-compose up --build -d web
+```
+### Upate only server
+
+```
+docker-compose up --build -d server
+```
 
 ### Stop the Application
 
 ```
 docker-compose down
+```
+
+### Stop only server
+
+```
+docker-compose stop server
+
+```
+
+### Stop only web
+
+```
+docker-compose stop web
+
+```
+### Delete container server
+
+```
+docker-compose rm -f server
+
+```
+### Delete container web
+
+```
+docker-compose rm -f web
+
 ```
