@@ -6,12 +6,11 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
-  Link,
 } from "@mui/material";
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
 
-export const ValidatedLoginForm = () => {
+export const ValidatedRegistrationForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const router = useRouter();
@@ -19,7 +18,7 @@ export const ValidatedLoginForm = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (e.target.checkValidity()) {
-      router.push("/logged");
+      router.push("/signed-in");
     } else {
       alert("Form isn't valid");
     }
@@ -44,6 +43,20 @@ export const ValidatedLoginForm = () => {
       }}
     >
       <ValidatedTextField
+        name={"firstName"}
+        label={"First Name"}
+        autoComplete={"First Name"}
+        type="name"
+        helperText={"Please, enter first name"}
+      />
+      <ValidatedTextField
+        name={"lastName"}
+        label={"Last Name"}
+        autoComplete={"Last Name"}
+        type="name"
+        helperText={"Please, enter last name"}
+      />
+      <ValidatedTextField
         name={"email"}
         label={"Email Address"}
         autoComplete={"email"}
@@ -61,24 +74,17 @@ export const ValidatedLoginForm = () => {
         }}
       />
       <Grid container sx={{ mt: 4 }}>
-        <Grid item xs>
-          <FormControlLabel
-            control={
-              <Checkbox
-                required
-                value="remember"
-                color="secondary"
-                onChange={handleChangeKeepLoggedIn}
-              />
-            }
-            label="Keep me logged in "
-          />
-        </Grid>
-        <Grid item alignSelf={"center"}>
-          <Link href="#" variant="body1" color="secondary">
-            Forgot password?
-          </Link>
-        </Grid>
+        <FormControlLabel
+          control={
+            <Checkbox
+              required
+              value="remember"
+              color="secondary"
+              onChange={handleChangeKeepLoggedIn}
+            />
+          }
+          label="I agree to the terms and privacy policy"
+        />
       </Grid>
 
       <Button
