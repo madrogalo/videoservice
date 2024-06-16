@@ -1,16 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-} from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Grid } from "@mui/material";
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
+import { PASSWORD_PATTERN } from "@/constants";
 
-export const ValidatedRegistrationForm = () => {
+export const ValidatedSigninForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const router = useRouter();
@@ -70,7 +65,7 @@ export const ValidatedRegistrationForm = () => {
         type="password"
         helperText={"Please, enter password"}
         inputProps={{
-          pattern: "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$",
+          pattern: PASSWORD_PATTERN,
         }}
       />
       <Grid container sx={{ mt: 4 }}>

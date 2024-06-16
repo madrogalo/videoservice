@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
+import { PASSWORD_PATTERN } from "@/constants";
 
 export const ValidatedLoginForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
@@ -57,7 +58,7 @@ export const ValidatedLoginForm = () => {
         type="password"
         helperText={"Please, enter password"}
         inputProps={{
-          pattern: "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$",
+          pattern: PASSWORD_PATTERN,
         }}
       />
       <Grid container sx={{ mt: 4 }}>
@@ -89,7 +90,7 @@ export const ValidatedLoginForm = () => {
         size="large"
         color="secondary"
       >
-        Sign In
+        Log In
       </Button>
     </Box>
   );

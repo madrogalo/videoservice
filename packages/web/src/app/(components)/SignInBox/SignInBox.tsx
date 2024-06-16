@@ -1,7 +1,7 @@
 import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import React from "react";
 import { SocialIconButton } from "../SocialIconButton/socialIconButton";
-import { ValidatedRegistrationForm } from "../ValidatedRegistrationForm/validatedRegistrationForm";
+import { ValidatedSigninForm } from "../ValidatedSigninForm/validatedSigninForm";
 
 import googleImage from "@assets/Google.png";
 import facebookImage from "@assets/Facebook.png";
@@ -38,7 +38,7 @@ export const SignInBox = () => {
         >
           Create your account in a seconds
         </Typography>
-        <ValidatedRegistrationForm />
+        <ValidatedSigninForm />
 
         <Link href="/login" variant="body2" sx={{ mt: 3 }} color="secondary">
           {"Already a member? Login"}
