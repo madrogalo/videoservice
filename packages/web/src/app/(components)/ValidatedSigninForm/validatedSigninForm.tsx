@@ -4,15 +4,41 @@ import { Box, Button, Checkbox, FormControlLabel, Grid } from "@mui/material";
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
 import { PASSWORD_PATTERN } from "@/constants";
+import axios from "axios";
 
 export const ValidatedSigninForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const router = useRouter();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (e.target.checkValidity()) {
+      axios
+        .post("/register", {
+          name: "name",
+          surname: "surname",
+          email: "qwert@qwert.com",
+          password: "Qwert123",
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // const response = await fetch("/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     name: "name",
+      //     surname: "surname",
+      //     email: "qwert@qwert.com",
+      //     password: "Qwert123",
+      //   }),
+      // });
       router.push("/signed-in");
     } else {
       alert("Form isn't valid");
