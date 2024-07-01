@@ -11,6 +11,8 @@ import {
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
 import { PASSWORD_PATTERN } from "@/constants";
+import { callToAPI } from "@/helpers/callToAPI";
+import { formDataToString } from "@/helpers/formDataToString";
 
 export const ValidatedLoginForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
@@ -19,11 +21,24 @@ export const ValidatedLoginForm = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (e.target.checkValidity()) {
-      router.push("/logged");
-    } else {
-      alert("Form isn't valid");
-    }
+    const formData = new FormData(e.currentTarget);
+
+    const value = Object.fromEntries(formData.entries());
+
+    callToAPI({
+      method: "POST",
+      url: "http://localhost:8080/login",
+      params: {
+        email: formDataToString(value.email),
+        password: formDataToString(value.password),
+      },
+    })
+      .then(function (response) {
+        router.push("/protected");
+      })
+      .catch(function (error) {
+        alert("Can't login " + String.fromCodePoint(0x1f61e));
+      });
   };
 
   const handleChangeKeepLoggedIn = (

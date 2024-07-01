@@ -40,12 +40,7 @@ export const LoginBox = () => {
         </Typography>
         <ValidatedLoginForm />
 
-        <Link
-          href="/registration"
-          variant="body2"
-          sx={{ mt: 3 }}
-          color="secondary"
-        >
+        <Link href="/signin" variant="body2" sx={{ mt: 3 }} color="secondary">
           {"Don't have an account? Sign Up"}
         </Link>
         <Typography
