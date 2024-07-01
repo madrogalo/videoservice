@@ -22,6 +22,7 @@ export const ValidatedTextField = (props: ValidatedTextFieldType) => {
   return (
     <TextField
       sx={{ mt: 2.5 }}
+      size="small"
       required
       fullWidth
       id={props.name}

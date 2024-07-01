@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import styles from "./protected.module.css";
 
 interface User {
@@ -19,17 +19,22 @@ const Protected: React.FC = () => {
   useEffect(() => {
     const fetchProtectedData = async () => {
       try {
-        const response = await axios.get<{ user: User }>('http://localhost:8080/protected', { withCredentials: true });
+        const response = await axios.get<{ user: User }>(
+          "http://localhost:8080/protected",
+          { withCredentials: true }
+        );
         setUser(response.data.user);
       } catch (error) {
         // @ts-ignore
         setError(error.response ? error.response.data.message : error.message);
-        router.push('/login');
+        router.push("/login");
       }
     };
 
     fetchProtectedData();
   }, [router]);
+
+  console.log("render /protected route");
 
   return (
     <article className={styles.root}>
@@ -38,7 +43,6 @@ const Protected: React.FC = () => {
         <div>
           <h2>Welcome, {user.email}</h2>
           <h2>Get and Delete Users</h2>
-
         </div>
       ) : (
         <div>Loading...</div>

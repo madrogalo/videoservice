@@ -19,7 +19,7 @@ export const Logged = () => {
       minHeight="100vh"
     >
       <Typography variant="h5" component="div" fontWeight={700} color="primary">
-        You are succesfully logged in
+        You are succesfully signed in
       </Typography>
       <Button onClick={handleNavigateToMainPage}>Main page</Button>
     </Box>
