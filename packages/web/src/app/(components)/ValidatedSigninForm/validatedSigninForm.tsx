@@ -1,25 +1,18 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Link,
-} from "@mui/material";
+import React, { FormEvent, useState } from "react";
+import { Box, Button, Checkbox, FormControlLabel, Grid } from "@mui/material";
 import { ValidatedTextField } from "../ValidatedTextField/validatedTextField";
 import { useRouter } from "next/navigation";
 import { PASSWORD_PATTERN } from "@/constants";
 import { callToAPI } from "@/helpers/callToAPI";
 import { formDataToString } from "@/helpers/formDataToString";
 
-export const ValidatedLoginForm = () => {
+export const ValidatedSigninForm = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const router = useRouter();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -27,17 +20,19 @@ export const ValidatedLoginForm = () => {
 
     callToAPI({
       method: "POST",
-      url: "http://localhost:8080/login",
+      url: "http://localhost:8080/register",
       params: {
+        name: formDataToString(value.firstName),
+        surname: formDataToString(value.lastName),
         email: formDataToString(value.email),
         password: formDataToString(value.password),
       },
     })
       .then(function (response) {
-        router.push("/protected");
+        router.push("/signed-in");
       })
       .catch(function (error) {
-        alert("Can't login " + String.fromCodePoint(0x1f61e));
+        alert("Can't sign in " + String.fromCodePoint(0x1f61e));
       });
   };
 
@@ -60,6 +55,20 @@ export const ValidatedLoginForm = () => {
       }}
     >
       <ValidatedTextField
+        name={"firstName"}
+        label={"First Name"}
+        autoComplete={"First Name"}
+        type="name"
+        helperText={"Please, enter first name"}
+      />
+      <ValidatedTextField
+        name={"lastName"}
+        label={"Last Name"}
+        autoComplete={"Last Name"}
+        type="name"
+        helperText={"Please, enter last name"}
+      />
+      <ValidatedTextField
         name={"email"}
         label={"Email Address"}
         autoComplete={"email"}
@@ -77,24 +86,17 @@ export const ValidatedLoginForm = () => {
         }}
       />
       <Grid container sx={{ mt: 4 }}>
-        <Grid item xs>
-          <FormControlLabel
-            control={
-              <Checkbox
-                required
-                value="remember"
-                color="secondary"
-                onChange={handleChangeKeepLoggedIn}
-              />
-            }
-            label="Keep me logged in "
-          />
-        </Grid>
-        <Grid item alignSelf={"center"}>
-          <Link href="#" variant="body1" color="secondary">
-            Forgot password?
-          </Link>
-        </Grid>
+        <FormControlLabel
+          control={
+            <Checkbox
+              required
+              value="remember"
+              color="secondary"
+              onChange={handleChangeKeepLoggedIn}
+            />
+          }
+          label="I agree to the terms and privacy policy"
+        />
       </Grid>
 
       <Button
@@ -105,7 +107,7 @@ export const ValidatedLoginForm = () => {
         size="large"
         color="secondary"
       >
-        Log In
+        Sign In
       </Button>
     </Box>
   );
